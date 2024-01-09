@@ -4,13 +4,11 @@ function logger() {
 const obj = { item: "some value" };
 
 // bind
-const bindedLogger = logger.bind(obj);
-bindedLogger();
+const boundLogger = logger.bind(obj);
+boundLogger();
 
 // call
 logger.call(obj);
 
 // apply
 logger.apply(obj);
-
-logger();

@@ -1,9 +1,10 @@
 Function.prototype.myBind = function (thisArg, ...args) {
+  const wrapper = {
+    ...thisArg,
+    func: this,
+  };
+
   return function (...params) {
-    this(...args, ...params);
+    wrapper.func(...args, ...params);
   };
 };
-
-function f() {}
-
-f.myBind();
