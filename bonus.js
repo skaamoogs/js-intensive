@@ -1,13 +1,10 @@
-//let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-let arr = [5, 2, 8, 6, 9, 1, 3, 4, 7];
-let total = 13;
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const total = 13;
 //result = [4, 9]
-/**
- *
- * @param {number[]} arr
- * @param {number[]} total
+
+/* Алгоритм с полным перебором (сложность O(n ^ 2))
  */
-const firstSum = (arr, total) => {
+const firstSum1 = (arr, total) => {
   for (let i = 0; i < arr.length - 1; ++i) {
     for (let j = i + 1; j < arr.length; ++j) {
       if (arr[i] + arr[j] === total) {
@@ -17,4 +14,19 @@ const firstSum = (arr, total) => {
   }
   return [];
 };
-console.log(firstSum(arr, total));
+
+/* Алгоритм с хранением элементов в объекте (сложность O(n))
+ */
+const firstSum2 = (arr, total) => {
+  const d = arr.reduce((acc, cv, i) => {
+    acc[cv] = i;
+    return acc;
+  }, {});
+  for (let num of arr) {
+    if (total - num in d) {
+      return [num, total - num];
+    }
+  }
+
+  return [];
+};
